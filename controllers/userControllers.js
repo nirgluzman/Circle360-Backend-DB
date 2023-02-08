@@ -181,6 +181,12 @@ const upsertUser = async (req, res) => {
     let user = await User.findOne({ email }).exec();
 
     if (!user) {
+      if (!nickname) {
+        return res.status(404).json({
+          success: false,
+          error: "nickname is missing or not valid",
+        });
+      }
       user = await User.create({ nickname, email });
     } else {
       user = await User.findOneAndUpdate(

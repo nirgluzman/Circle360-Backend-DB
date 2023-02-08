@@ -6,7 +6,7 @@ const {
   getUser,
   createUser,
   updateUser,
-  upsertUser, // to be reviewed
+  upsertUser,
   deleteUser,
   getAllMyGroups,
   getGroup,
@@ -21,6 +21,8 @@ app.get("/all/:limit", getAllUsers);
 app.get("/many", getManyUsers);
 
 app.route("/").get(getUser).put(updateUser).post(createUser).delete(deleteUser);
+
+app.route("/upsert").put(upsertUser);
 
 app.route("/group/all").get(getAllMyGroups);
 
